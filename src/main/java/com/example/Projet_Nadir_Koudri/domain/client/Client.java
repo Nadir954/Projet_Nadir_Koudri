@@ -5,6 +5,7 @@ import com.example.Projet_Nadir_Koudri.domain.account.CheckingAccount;
 import com.example.Projet_Nadir_Koudri.domain.account.SavingAccount;
 import com.example.Projet_Nadir_Koudri.domain.advisor.Advisor;
 import com.example.Projet_Nadir_Koudri.domain.card.BankCard;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +32,9 @@ public class Client {
     private Advisor advisor;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Account> accounts = new ArrayList<>();
+
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<BankCard> cards = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.example.Projet_Nadir_Koudri.domain.account;
 
 import com.example.Projet_Nadir_Koudri.domain.client.Client;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -22,7 +23,8 @@ public abstract class Account {
     private LocalDate openingDate;
 
     @ManyToOne
-    @JsonIgnore
+    @JoinColumn(name = "client_id")
+    @JsonBackReference
     private Client client;
 
     public void deposit(double amount) {
@@ -31,3 +33,4 @@ public abstract class Account {
 
     public abstract void withdraw(double amount);
 }
+
