@@ -1,5 +1,6 @@
 package com.example.Projet_Nadir_Koudri.service;
 
+import com.example.Projet_Nadir_Koudri.domain.account.Account;
 import com.example.Projet_Nadir_Koudri.domain.advisor.Advisor;
 import com.example.Projet_Nadir_Koudri.domain.client.Client;
 import com.example.Projet_Nadir_Koudri.infrastructure.repository.AdvisorRepository;
@@ -35,10 +36,13 @@ public class AdvisorService {
 
     public boolean isWealthy(Client c) {
         double total = 0;
-        if (c.getCheckingAccount() != null)
-            total += c.getCheckingAccount().getBalance();
-        if (c.getSavingAccount() != null)
-            total += c.getSavingAccount().getBalance();
+
+        if (c.getAccounts() != null) {
+            for (Account account : c.getAccounts()) {
+                total += account.getBalance();
+            }
+        }
+
         return total > 500000;
     }
 }

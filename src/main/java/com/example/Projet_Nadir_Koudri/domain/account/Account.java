@@ -1,5 +1,7 @@
 package com.example.Projet_Nadir_Koudri.domain.account;
 
+import com.example.Projet_Nadir_Koudri.domain.client.Client;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +20,10 @@ public abstract class Account {
     private String number;
     private double balance;
     private LocalDate openingDate;
+
+    @ManyToOne
+    @JsonIgnore
+    private Client client;
 
     public void deposit(double amount) {
         if (amount > 0) balance += amount;

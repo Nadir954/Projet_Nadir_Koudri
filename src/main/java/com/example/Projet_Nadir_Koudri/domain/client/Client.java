@@ -1,5 +1,6 @@
 package com.example.Projet_Nadir_Koudri.domain.client;
 
+import com.example.Projet_Nadir_Koudri.domain.account.Account;
 import com.example.Projet_Nadir_Koudri.domain.account.CheckingAccount;
 import com.example.Projet_Nadir_Koudri.domain.account.SavingAccount;
 import com.example.Projet_Nadir_Koudri.domain.advisor.Advisor;
@@ -29,11 +30,8 @@ public class Client {
     @ManyToOne
     private Advisor advisor;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private CheckingAccount checkingAccount;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private SavingAccount savingAccount;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Account> accounts = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<BankCard> cards = new ArrayList<>();
